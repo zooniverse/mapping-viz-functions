@@ -5,17 +5,17 @@ function executeSQL(context, params) {
     const client = new pg.Client({ connectionString })
 
     client.connect();
-    const { lat, lon } = params
+    const { grid_index } = params
     
-    if (!lat || !lon) {
+    if (!grid_index) {
         context.res = {
             status: 422,
-            body: 'Query params must include both lat and lon'
+            body: 'Query param must include grid_index'
         }
         return context.done()
     }
 
-    const query = `SELECT * FROM temperature where lat = ${lat} and lon = ${lon}`;
+    const query = `SELECT * FROM temperature where sst_grid_index = ${grid_index}`;
 
     client.query(query)
         .then(res => {
