@@ -15,9 +15,10 @@ function executeSQL(context, params) {
         return context.done()
     }
 
-    const query = `SELECT * FROM temperature where sst_grid_index = ${grid_index}`;
+    const query = `SELECT * FROM temperature where sst_grid_index = $1`;
+    const values = [grid_index]
 
-    client.query(query)
+    client.query(query, values)
         .then(res => {
             context.res = {
                 status: 200,

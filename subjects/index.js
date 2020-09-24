@@ -15,10 +15,10 @@ function executeSQL(context, params) {
         return context.done()
     }
 
-    const query = `SELECT * FROM subjects where lat < ${maxLat} and lat > ${minLat}
-        and lon < ${maxLon} and lon > ${minLon}`;
+    const query = `SELECT * FROM subjects where lat < $1 and lat > $2 and lon < $3 and lon > $4`;
+    const values = [maxLat, minLat, maxLon, minLon]
 
-    client.query(query)
+    client.query(query, values)
         .then(res => {
             context.res = {
                 status: 200,
