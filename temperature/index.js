@@ -5,7 +5,6 @@ async function executeSQL(context, params) {
     const connectionString = 'postgres://postgres:postgres@localhost:5432/sample_db'
     const client = new pg.Client({ connectionString })
 
-    client.connect();
     const { grid_index } = params
     
     if (!grid_index) {
@@ -15,7 +14,8 @@ async function executeSQL(context, params) {
         }
         return context.done()
     }
-
+    
+    client.connect();
     const query = `SELECT * FROM temperature where sst_grid_index = $1`;
     const values = [grid_index]
     await performQuery(client, context, query, values)

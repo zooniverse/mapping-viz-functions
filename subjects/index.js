@@ -5,9 +5,8 @@ async function executeSQL(context, params) {
     const connectionString = 'postgres://postgres:postgres@localhost:5432/sample_db'
     const client = new pg.Client({ connectionString })
 
-    client.connect();
     const { maxLat, minLat, maxLon, minLon } = params
-
+    
     if (!maxLat || !minLat || !maxLon || !minLon) {
         context.res = {
             status: 422,
@@ -15,7 +14,8 @@ async function executeSQL(context, params) {
         }
         return context.done()
     }
-
+    
+    client.connect();
     const query = `SELECT * FROM subjects where lat < $1 and lat > $2 and lon < $3 and lon > $4`;
     const values = [maxLat, minLat, maxLon, minLon]
     await performQuery(client, context, query, values)

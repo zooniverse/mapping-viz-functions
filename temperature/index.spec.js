@@ -27,16 +27,18 @@ describe('fetching temperature data', () => {
     await getTemperature(context, request)
     expect(client.connect).toHaveBeenCalled()
     expect(client.query).toHaveBeenCalledWith('SELECT * FROM temperature where sst_grid_index = $1', ['130'])
+    expect(client.end).toHaveBeenCalled()
     expect(context.res.status).toBe(200)
   })
-
+  
   it('should fail without the correct params', async () => {
     const request = {
       query: {}
     }
     await getTemperature(context, request)
-    expect(client.connect).toHaveBeenCalled()
+    expect(client.connect).not.toHaveBeenCalled()
     expect(client.query).not.toHaveBeenCalled()
+    expect(client.end).not.toHaveBeenCalled()
     expect(context.res.status).toBe(422)
     expect(context.res.body).toBe('Query param must include grid_index')
   })

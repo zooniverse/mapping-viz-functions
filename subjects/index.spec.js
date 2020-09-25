@@ -29,6 +29,7 @@ describe('fetching subjects data', () => {
     }
     await getSubjects(context, request)
     expect(client.connect).toHaveBeenCalled()
+    expect(client.end).toHaveBeenCalled()
     expect(client.query).toHaveBeenCalledWith('SELECT * FROM subjects where lat < $1 and lat > $2 and lon < $3 and lon > $4', ['52', '50', '125', '120'])
     expect(context.res.status).toBe(200)
   })
@@ -38,8 +39,9 @@ describe('fetching subjects data', () => {
       query: {}
     }
     await getSubjects(context, request)
-    expect(client.connect).toHaveBeenCalled()
+    expect(client.connect).not.toHaveBeenCalled()
     expect(client.query).not.toHaveBeenCalled()
+    expect(client.end).not.toHaveBeenCalled()
     expect(context.res.status).toBe(422)
     expect(context.res.body).toBe('Query params must include maxLat, minLat, maxLon, and minLon')
   })

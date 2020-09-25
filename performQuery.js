@@ -5,7 +5,8 @@ async function performQuery(client, context, query, values) {
             status: 200,
             body: res.rows
         } 
-        context.done()  
+        context.done()
+        client.end()
     })
     .catch(err => {
         context.res = {
@@ -13,6 +14,7 @@ async function performQuery(client, context, query, values) {
             body: 'Error connecting to the mapping viz database'
         }
         context.done()
+        client.end()
     })
 }
 
