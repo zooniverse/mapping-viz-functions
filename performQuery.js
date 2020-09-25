@@ -1,5 +1,5 @@
-function performQuery(client, context, query, values) {
-  client.query(query, values)
+async function performQuery(client, context, query, values) {
+  await client.query(query, values)
     .then(res => {
         context.res = {
             status: 200,
