@@ -30,7 +30,7 @@ describe('fetching subjects data', () => {
     await getSubjects(context, request)
     expect(client.connect).toHaveBeenCalled()
     expect(client.end).toHaveBeenCalled()
-    expect(client.query).toHaveBeenCalledWith('SELECT * FROM subjects where lat < $1 and lat > $2 and lon < $3 and lon > $4', ['52', '50', '125', '120'])
+    expect(client.query).toHaveBeenCalledWith('SELECT * FROM subjects where latitude < $1 and latitude > $2 and longitude < $3 and longitude > $4', ['52', '50', '125', '120'])
     expect(context.res.status).toBe(200)
   })
 

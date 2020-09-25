@@ -16,7 +16,7 @@ async function executeSQL(context, params) {
     }
     
     client.connect();
-    const query = `SELECT * FROM subjects where lat < $1 and lat > $2 and lon < $3 and lon > $4`;
+    const query = `SELECT * FROM subjects where latitude < $1 and latitude > $2 and longitude < $3 and longitude > $4`;
     const values = [maxLat, minLat, maxLon, minLon]
     await performQuery(client, context, query, values)
 }
