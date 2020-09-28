@@ -1,5 +1,5 @@
 const pg = require('pg');
-const performQuery = require('../performQuery').default
+const performQuery = require('../helpers/performQuery').default
 
 async function executeSQL(context, params) {
     const connectionString = 'postgres://postgres:postgres@localhost:5432/sample_db'
