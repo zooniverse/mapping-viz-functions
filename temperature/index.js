@@ -16,7 +16,7 @@ async function executeSQL(context, params) {
     }
     
     client.connect();
-    const query = `SELECT * FROM temperature where temperature_grid_index = $1`;
+    const query = `SELECT * FROM temperatures where temperature_grid_index = $1`;
     const values = [grid_index]
     await performQuery(client, context, query, values)
 }
