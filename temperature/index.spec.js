@@ -26,7 +26,7 @@ describe('fetching temperature data', () => {
     }
     await getTemperature(context, request)
     expect(client.connect).toHaveBeenCalled()
-    expect(client.query).toHaveBeenCalledWith('SELECT * FROM temperature where temperature_grid_index = $1', ['130'])
+    expect(client.query).toHaveBeenCalledWith('SELECT * FROM temperatures where temperature_grid_index = $1', ['130'])
     expect(client.end).toHaveBeenCalled()
     expect(context.res.status).toBe(200)
   })
