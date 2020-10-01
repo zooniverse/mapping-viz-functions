@@ -2,7 +2,7 @@ const pg = require('pg');
 const performQuery = require('../helpers/performQuery').default
 
 async function executeSQL(context, params) {
-    const connectionString = process.env['AzureWebJobsStorage']
+    const connectionString = process.env['PG_DB_CONNECTION_STRING']
     const client = new pg.Client({ connectionString })
 
     const { maxLat, minLat, maxLon, minLon } = params
