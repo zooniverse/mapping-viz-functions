@@ -2,7 +2,7 @@ const pg = require('pg');
 const performQuery = require('../helpers/performQuery').default
 
 async function executeSQL(context, params) {
-    const connectionString = process.env['PG_DB_CONNECTION_STRING']
+    const connectionString = process.env['PG_DB_CONNECTION_STRING'] || 'postgres://postgres:postgres@localhost:5432/sample_db'
     const client = new pg.Client({ connectionString })
 
     const { grid_index } = params
