@@ -3,11 +3,10 @@
 --
 
 -- Dumped from database version 9.5.20
--- Dumped by pg_dump version 12.4
+-- Dumped by pg_dump version 9.5.23
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
-SET idle_in_transaction_session_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SELECT pg_catalog.set_config('search_path', '', false);
@@ -16,7 +15,51 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
+--
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+--
+-- Name: pg_buffercache; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS pg_buffercache WITH SCHEMA public;
+
+
+--
+-- Name: EXTENSION pg_buffercache; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION pg_buffercache IS 'examine the shared buffer cache';
+
+
+--
+-- Name: pg_stat_statements; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS pg_stat_statements WITH SCHEMA public;
+
+
+--
+-- Name: EXTENSION pg_stat_statements; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION pg_stat_statements IS 'track execution statistics of all SQL statements executed';
+
+
 SET default_tablespace = '';
+
+SET default_with_oids = false;
 
 --
 -- Name: subjects; Type: TABLE; Schema: public; Owner: admin_staging
@@ -96,21 +139,21 @@ ALTER SEQUENCE public.temperatures_id_seq OWNED BY public.temperatures.id;
 
 
 --
--- Name: subjects id; Type: DEFAULT; Schema: public; Owner: admin_staging
+-- Name: id; Type: DEFAULT; Schema: public; Owner: admin_staging
 --
 
 ALTER TABLE ONLY public.subjects ALTER COLUMN id SET DEFAULT nextval('public.subjects_id_seq'::regclass);
 
 
 --
--- Name: temperatures id; Type: DEFAULT; Schema: public; Owner: admin_staging
+-- Name: id; Type: DEFAULT; Schema: public; Owner: admin_staging
 --
 
 ALTER TABLE ONLY public.temperatures ALTER COLUMN id SET DEFAULT nextval('public.temperatures_id_seq'::regclass);
 
 
 --
--- Name: subjects subjects_pkey; Type: CONSTRAINT; Schema: public; Owner: admin_staging
+-- Name: subjects_pkey; Type: CONSTRAINT; Schema: public; Owner: admin_staging
 --
 
 ALTER TABLE ONLY public.subjects
@@ -118,7 +161,7 @@ ALTER TABLE ONLY public.subjects
 
 
 --
--- Name: temperatures temperatures_pkey; Type: CONSTRAINT; Schema: public; Owner: admin_staging
+-- Name: temperatures_pkey; Type: CONSTRAINT; Schema: public; Owner: admin_staging
 --
 
 ALTER TABLE ONLY public.temperatures
