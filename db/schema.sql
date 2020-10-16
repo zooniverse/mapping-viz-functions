@@ -16,42 +16,42 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: -
 --
 
 CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 
 
 --
--- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: -
 --
 
 COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 
 
 --
--- Name: pg_buffercache; Type: EXTENSION; Schema: -; Owner: 
+-- Name: pg_buffercache; Type: EXTENSION; Schema: -; Owner: -
 --
 
 CREATE EXTENSION IF NOT EXISTS pg_buffercache WITH SCHEMA public;
 
 
 --
--- Name: EXTENSION pg_buffercache; Type: COMMENT; Schema: -; Owner: 
+-- Name: EXTENSION pg_buffercache; Type: COMMENT; Schema: -; Owner: -
 --
 
 COMMENT ON EXTENSION pg_buffercache IS 'examine the shared buffer cache';
 
 
 --
--- Name: pg_stat_statements; Type: EXTENSION; Schema: -; Owner: 
+-- Name: pg_stat_statements; Type: EXTENSION; Schema: -; Owner: -
 --
 
 CREATE EXTENSION IF NOT EXISTS pg_stat_statements WITH SCHEMA public;
 
 
 --
--- Name: EXTENSION pg_stat_statements; Type: COMMENT; Schema: -; Owner: 
+-- Name: EXTENSION pg_stat_statements; Type: COMMENT; Schema: -; Owner: -
 --
 
 COMMENT ON EXTENSION pg_stat_statements IS 'track execution statistics of all SQL statements executed';
@@ -62,7 +62,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: subjects; Type: TABLE; Schema: public; Owner: admin_staging
+-- Name: subjects; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.subjects (
@@ -78,10 +78,8 @@ CREATE TABLE public.subjects (
 );
 
 
-ALTER TABLE public.subjects OWNER TO admin_staging;
-
 --
--- Name: subjects_id_seq; Type: SEQUENCE; Schema: public; Owner: admin_staging
+-- Name: subjects_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
 CREATE SEQUENCE public.subjects_id_seq
@@ -92,17 +90,15 @@ CREATE SEQUENCE public.subjects_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.subjects_id_seq OWNER TO admin_staging;
-
 --
--- Name: subjects_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: admin_staging
+-- Name: subjects_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
 ALTER SEQUENCE public.subjects_id_seq OWNED BY public.subjects.id;
 
 
 --
--- Name: temperatures; Type: TABLE; Schema: public; Owner: admin_staging
+-- Name: temperatures; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.temperatures (
@@ -115,10 +111,8 @@ CREATE TABLE public.temperatures (
 );
 
 
-ALTER TABLE public.temperatures OWNER TO admin_staging;
-
 --
--- Name: temperatures_id_seq; Type: SEQUENCE; Schema: public; Owner: admin_staging
+-- Name: temperatures_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
 CREATE SEQUENCE public.temperatures_id_seq
@@ -129,31 +123,29 @@ CREATE SEQUENCE public.temperatures_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.temperatures_id_seq OWNER TO admin_staging;
-
 --
--- Name: temperatures_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: admin_staging
+-- Name: temperatures_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
 ALTER SEQUENCE public.temperatures_id_seq OWNED BY public.temperatures.id;
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: admin_staging
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.subjects ALTER COLUMN id SET DEFAULT nextval('public.subjects_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: admin_staging
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.temperatures ALTER COLUMN id SET DEFAULT nextval('public.temperatures_id_seq'::regclass);
 
 
 --
--- Name: subjects_pkey; Type: CONSTRAINT; Schema: public; Owner: admin_staging
+-- Name: subjects_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.subjects
@@ -161,41 +153,11 @@ ALTER TABLE ONLY public.subjects
 
 
 --
--- Name: temperatures_pkey; Type: CONSTRAINT; Schema: public; Owner: admin_staging
+-- Name: temperatures_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.temperatures
     ADD CONSTRAINT temperatures_pkey PRIMARY KEY (id);
-
-
---
--- Name: SCHEMA public; Type: ACL; Schema: -; Owner: azure_superuser
---
-
-REVOKE ALL ON SCHEMA public FROM PUBLIC;
-REVOKE ALL ON SCHEMA public FROM azure_superuser;
-GRANT ALL ON SCHEMA public TO azure_superuser;
-GRANT ALL ON SCHEMA public TO PUBLIC;
-
-
---
--- Name: TABLE subjects; Type: ACL; Schema: public; Owner: admin_staging
---
-
-REVOKE ALL ON TABLE public.subjects FROM PUBLIC;
-REVOKE ALL ON TABLE public.subjects FROM admin_staging;
-GRANT ALL ON TABLE public.subjects TO admin_staging;
-GRANT ALL ON TABLE public.subjects TO mapping_viz_staging;
-
-
---
--- Name: TABLE temperatures; Type: ACL; Schema: public; Owner: admin_staging
---
-
-REVOKE ALL ON TABLE public.temperatures FROM PUBLIC;
-REVOKE ALL ON TABLE public.temperatures FROM admin_staging;
-GRANT ALL ON TABLE public.temperatures TO admin_staging;
-GRANT ALL ON TABLE public.temperatures TO mapping_viz_staging;
 
 
 --
