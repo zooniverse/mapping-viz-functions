@@ -13,13 +13,11 @@ Although not required, you may also want to install the Azure VS Code [extension
 1. Install PostgreSQL 9.5 and run the PostgreSQL service locally 
 2. Create a database called `mapping_viz_local`. You can do so with the following command on the terminal:  
 `createdb mapping_viz_local`
-3. Once that database is created, execute the db/schema.sql file and db/test_data.sql file on the `mapping_viz_local` database. To do so, first connect to the `mapping_viz_local` database via `psql` on the command line:  
-`psql -d mapping_viz_local`  
-Then, in psql, run the schema.sql file using the `\include` command:  
-`\include path\to\repo\mapping-viz-functions\db\schema.sql` 
-4. Next, still on the psql command prompt, populate the database with test data:  
- `\include path\to\repo\mapping-viz-functions\db\data\test_data.sql`  
-See more on how to use the `\include` command in the [psql documentation](https://www.postgresql.org/docs/9.5/app-psql.html)). 
+3. Once that database is created, execute the db/schema.sql file and db/test_data.sql files on the `mapping_viz_local` database. To do so, execute the following commands:
+   ```
+   psql -d mapping_viz_local < ./db/schema.sql
+   psql -d mapping_viz_local < ./db/data/test_data.sql 
+   ```
 
 ### `yarn install`
 To install the necessary dependencies
