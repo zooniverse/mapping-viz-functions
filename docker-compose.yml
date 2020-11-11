@@ -1,0 +1,21 @@
+version: '3'
+services:
+  postgres:
+    image: postgres:9.5
+    environment:
+      - "POSTGRES_USER=mapping_viz_local"
+      - "POSTGRES_PASSWORD=mapping_viz_local"
+    ports:
+      - "5432:5432"
+  app:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    volumes:
+      - ${PWD}:/src
+    environment:
+      - "PGUSER=mapping_viz_local"
+      - "PGPASSWORD=mapping_viz_local"
+      - "PGHOST=pg"
+    links:
+      - postgres:pg
