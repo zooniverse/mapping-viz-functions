@@ -9,7 +9,20 @@ In order to run this code, you'll need to install the Azure Functions [core tool
 
 Although not required, you may also want to install the Azure VS Code [extension.](https://code.visualstudio.com/docs/azure/extensions)
 
-### Local database setup
+### Run with Docker
+1. To build the containers, run the following command:  
+  `docker-compose build`  
+  You will need to re-run this command on any changes to the Dockerfile.
+  
+2. To initialize the database tables and test data, run:  
+  `docker-compose run --rm app yarn init-db`  
+  You'll only need to do this once.
+  
+3. To start the server run:  
+  `docker-compose run --rm app yarn start`
+  
+### Run without Docker
+#### Local database setup
 1. Install PostgreSQL 9.5 and run the PostgreSQL service locally 
 2. Create a database called `mapping_viz_local`. You can do so with the following command on the terminal:  
 `createdb mapping_viz_local`
@@ -19,16 +32,16 @@ Although not required, you may also want to install the Azure VS Code [extension
    psql -d mapping_viz_local < ./db/data/test_data.sql 
    ```
 
-### `yarn install`
+#### `yarn install`
 To install the necessary dependencies
 
-### `yarn test`
+#### `yarn test`
 To test the app
 
-### `yarn start`
+#### `yarn start`
 To start the server. You an then try hitting the available endpoints (see terminal).
 
-### Connection Strings
+#### Connection Strings
 For security, connection strings are set on the Azure Portal. Check out the `PG_DB_CONNECTION_STRING` ENV variable for this function when logged into the portal. For local testing, this variable can be set in the `local.settings.json` file. Just be careful not to commit any sensitive information when testing. 
 
 ## Deployment

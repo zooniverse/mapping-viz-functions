@@ -4,7 +4,8 @@
   "description": "",
   "scripts": {
     "start": "func start",
-    "test": "jest"
+    "test": "jest",
+    "init-db": "psql -d $PGDATABASE < ./db/schema.sql && psql -d $PGDATABASE < ./db/data/test_data.sql "
   },
   "dependencies": {
     "pg": "^8.3.3"
