@@ -1,7 +1,18 @@
 # Mapping Viz Functions
-Azure Functions prepared for the Mapping Viz Tools project. This repo contains [Azure Functions](https://docs.microsoft.com/en-us/azure/azure-functions/), found in the `index.js` files within each route, or folder (eg: subjects, temperature).  
+Azure Functions prepared for the Mapping Viz Tools project. This repo contains [Azure Functions](https://docs.microsoft.com/en-us/azure/azure-functions/), found in the `index.js` files within each route, or folder (eg: subjects, temperature). The app is hosted at the following domains:  
+* Production: https://mapping-viz-functions-prod.azurewebsites.net
+* Staging: https://mapping-viz-functions-staging.azurewebsites.net
 
-More info on the Mapping Viz Tools [wiki](https://github.com/zooniverse/mapping-viz-tools/wiki/What-are-Azure-Functions%3F)
+## Functionality 
+The app has two endpoints, one to retrieve subjects and one to retrieve temperature.  
+### Subjects endpoint
+Query params `minLat`, `maxLat`, `minLon`, and `maxLon` are required - update these values as needed.  
+https://mapping-viz-functions-prod.azurewebsites.net/api/subjects?maxLat=70&minLat=-70&maxLon=70&minLon=-70  
+### Temperature endpoint 
+The query param `grid_index` is required - update this value as needed.  
+https://mapping-viz-functions-prod.azurewebsites.net/api/temperature?grid_index=1
+
+More info can be found at the Mapping Viz Tools [wiki](https://github.com/zooniverse/mapping-viz-tools/wiki/What-are-Azure-Functions%3F).
 
 ## Getting started
 ### Dependencies
