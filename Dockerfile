@@ -1,4 +1,4 @@
-FROM node:10
+FROM node:14
 WORKDIR /src
 
 # PostgreSQL 9.5 apt package setup
@@ -19,7 +19,6 @@ RUN apt-get update && apt-get -y upgrade && \
   apt-get clean
 
 ADD package.json /src/
-ADD package-lock.json /src/
 ADD yarn.lock /src/
 
 RUN yarn install
