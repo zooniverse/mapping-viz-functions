@@ -1,7 +1,7 @@
 FROM node:14
 WORKDIR /src
 
-# PostgreSQL 9.5 apt package setup
+# PostgreSQL 11 apt package setup
 RUN echo $(grep "VERSION=" /etc/os-release | cut -d "(" -f2 | cut -d ")" -f1) | \
   xargs -i echo "deb http://apt.postgresql.org/pub/repos/apt/ {}-pgdg main" > /etc/apt/sources.list.d/postgresql.list && \
   wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
