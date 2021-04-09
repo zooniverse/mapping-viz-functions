@@ -25,12 +25,19 @@ Although not required, you may also want to install the Azure VS Code [extension
   `docker-compose build`  
   You will need to re-run this command on any changes to the Dockerfile.
   
-2. To initialize the database tables and test data, run:  
+2. Run `docker-compose up`
+
+3. To initialize the database tables and test data, in a new terminal tab run:  
   `docker-compose run --rm app yarn init-db`  
   You'll only need to do this once.
+
+4. Run `yarn install`
   
-3. To start the server run:  
-  `docker-compose run --rm app yarn start`
+5. To start the server run:  
+  `docker-compose run -p 7071:7071 --rm app yarn start`
+
+6. To stop the Docker container
+ `docker-compose down`
   
 ### Run without Docker
 #### Local database setup
