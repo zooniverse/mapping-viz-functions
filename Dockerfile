@@ -15,7 +15,7 @@ RUN apt-get update && apt-get install -y apt-transport-https lsb-release && \
 # install PostgreSQL and Azure Functions
 RUN apt-get update && apt-get -y upgrade && \
   apt-get install --no-install-recommends -y \
-  postgresql-client-9.5 azure-functions-core-tools-3 && \
+  postgresql-client-11 azure-functions-core-tools-3 && \
   apt-get clean
 
 ADD package.json /src/
