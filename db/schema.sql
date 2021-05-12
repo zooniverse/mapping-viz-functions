@@ -32,7 +32,8 @@ CREATE TABLE public.subjects (
     media_location text,
     subject_set_id integer,
     kelp_km2 numeric,
-    temperature_grid_index integer
+    temperature_grid_index integer,
+    temp_celsius numeric
 );
 
 
