@@ -1,12 +1,12 @@
-FROM node:14
+FROM node:20
 WORKDIR /src
 
-# PostgreSQL 11 apt package setup
+# PostgreSQL 16 apt package setup
 RUN echo $(grep "VERSION=" /etc/os-release | cut -d "(" -f2 | cut -d ")" -f1) | \
   xargs -i echo "deb http://apt.postgresql.org/pub/repos/apt/ {}-pgdg main" > /etc/apt/sources.list.d/postgresql.list && \
   wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
 
-# Azure Functions Core Tools 3 package setup
+# Azure Functions Core Tools 4 package setup
 RUN apt-get update && apt-get install -y apt-transport-https lsb-release && \
   curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg && \
   mv microsoft.gpg /etc/apt/trusted.gpg.d/microsoft.gpg && \
@@ -15,7 +15,7 @@ RUN apt-get update && apt-get install -y apt-transport-https lsb-release && \
 # install PostgreSQL and Azure Functions
 RUN apt-get update && apt-get -y upgrade && \
   apt-get install --no-install-recommends -y \
-  postgresql-client-11 azure-functions-core-tools-3 && \
+  postgresql-client-16 azure-functions-core-tools-4 && \
   apt-get clean
 
 ADD package.json /src/
